@@ -3342,6 +3342,22 @@ footer .footer_bottom {
 nav.pagination {
 	display: block;
 }
+/*-------- custom_logo settings------------*/
+.custom-logo-image {
+  margin: 0 auto;
+  padding: 5px;
+  max-width: 150px;
+  background: white;
+  /* start*/
+  border-radius: 50% #头像圆角
+  transition: 2.5s all; #旋转动画时间
+}
+
+.custom-logo-image:hover {
+  transform: rotate(360deg); #旋转角度
+}
+/* end */
+
 @charset "utf-8";
 /* CSS Document */
 

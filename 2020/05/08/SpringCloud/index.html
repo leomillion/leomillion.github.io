@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Learning journal">
+  <meta name="author" content="Million Leo">
+  <meta name="keywords" content="Java、Engineer">
+  <title>SpringCloud - Leo‘s BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/railscasts.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leo'Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.3k 字
+                  </span>
+                
+
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年2月28日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="前提知识"><a href="#前提知识" class="headerlink" title="前提知识"></a>前提知识</h2><p>​    <strong>SpringMVC</strong></p>
+<p>​    <strong>Spring/SpringBoot</strong></p>
+<p>​    <strong>Mybatis</strong></p>
+<p>​    <strong>Maven</strong></p>
+<p>​    <strong>git</strong></p>
+<h2 id="SpringCloud简介"><a href="#SpringCloud简介" class="headerlink" title="SpringCloud简介"></a>SpringCloud简介</h2><p>SpringCloud不是一种技术，大概21种技术。</p>
+<p>​    SpringCloud是要给分布式的整体解决方案，SpringCloud为开发者提供了在分布式系统（配置管理，服务发现，熔断，路由，微代理，控制总线，一次性token，全局锁，leader选举，分布式session，集群状态）中快速构建的工具，使用SpringCloud的开发者可以快速的启动服务或构建应用、同时能够快速和云平台资源进行对接。</p>
+<p>​    单一的主机所能处理的数据是有限的，所以为了得到更高性能的设计方案，一定要采用多台主机，可是多台主机之间该如何进行分配呢？</p>
+<p>​    于是对于分布式的开发设计，最初就有了以下的几点思考</p>
+<ul>
+<li>分布式的开发如何可以让代码更安全</li>
+<li>分布式开发的时候如何进行有效的通讯</li>
+<li>在进行分布式处理的时候到底如何进行程序的功能划分</li>
+</ul>
+<p>对于很多有经验的工程师实际上都已经清楚的知道了现在项目开发之中要进行的分布式的设计：</p>
+<ul>
+<li>WEB集群：考虑到多用户并发访问的处理速度</li>
+<li>业务中心：在进行一些庞大的项目设计过程之中，应该有更加完善的业务处理，这样所有的客户端（服务器）直接调用这些业务中心的操作就可以完成具体的功能</li>
+<li>数据库集群：解决了数据的存储问题，以及数据的分片管理</li>
+</ul>
+<p>对于分布式的项目开发按照历史的发展经历过如下的一些技术：</p>
+<ul>
+<li>CORBA:公共对象请求代理架构，它是一种开发的标准，而且也是许多语言都支持的开发标准；</li>
+<li>RMI（远程方法调用）：该技术是SUN提出的，该技术出现的最大特征是希望可以和CORBA进行市场竞争，这时候出现了一个问题：很多公司不认可这项技术；<ul>
+<li>然而RMI第一次提出了远程接口的概念</li>
+</ul>
+</li>
+<li>后来SUN的设计师发现，RMI好用，但是步入CORBA广泛，便开始思考是否能基于CORBA做一些更好的设计呢，于是就产生了一个新的协议：RMI-IIOP协议，而这个协议用在了EJB技术上。<ul>
+<li>EJB留给世界上的只是他优秀的理论，然而实现很糟糕，但是这个理论开始被很多开源框架学习。</li>
+</ul>
+</li>
+</ul>
+<p>如果项目中需要使用WebService技术进行开发，则有如下问题：</p>
+<ul>
+<li>速度太慢，处理速度不行</li>
+<li>如果要想采用远程接口的方式调用，则要利用开发工具生成一堆的工具类代码；</li>
+</ul>
+<p>后来2005年的时候WebService在郑哥世界上继续发酵，形成了又一大核心神器：SOA，提出了一个服务总线（ESB）的概念。</p>
+<ul>
+<li>SOA提出的服务总线又成为了新一代分布式的讨论需求，如果将所有的服务管理起来，就成了服务总线，那么所有的开发者直接调用里面的服务就完成一些功能，后来又不断出现了许多的RPC开发技术，其中在国内具有代表性的就是ali的DUBBO技术，不过这个时候最快的是Rest，因为JSON的广泛应用，就如同最初的XML造就了WebService，Json造就了Rest服务，人们认为我们的操作应该更加简单一些。随着Rest技术的广泛认可，Spring终于得到了一个新的机会：利用Rest进行RPC技术实现，这样的操作技术很快，而且占用的带宽较少。SpringCloud真正的将整个的Rest实现技术，并且这一技术已经开始出现又行业的同一趋势，而且SpringCloud也依照SpringBoot的开发技术，可以实现项目的打包发布以击单独运行，这一点都符合于当前云时代的开发需求。</li>
+</ul>
+<h2 id="SpringCloud-与-SpringBoot的关系"><a href="#SpringCloud-与-SpringBoot的关系" class="headerlink" title="SpringCloud 与 SpringBoot的关系"></a>SpringCloud 与 SpringBoot的关系</h2><p>SpringCloud是关注全局的微服务协调整理治理框架，它将SpringBoot开发的一个个单体微服务整合并管理起来。为哥哥微服务之间提供：欸之管理，服务发现，断路器，路由，微代理，事件总线，全局锁，决策竞选，分布式会话等等集成服务。</p>
+<p>SpringBoot可以离开SpringCloud独立使用开发项目，但是SpringCloud离不开SpringBoot，属于依赖的关系。</p>
+<p>SpringBoot专注于快速，方便的开发单个微服务个体，SpringCloud 关注全局的服务治理框架。</p>
+<h2 id="SpringCloud开发架构"><a href="#SpringCloud开发架构" class="headerlink" title="SpringCloud开发架构"></a>SpringCloud开发架构</h2><p><strong>SpringCloud整体核心架构只有一点：</strong></p>
+<p>​    Rest服务，也就是说在整个SpringCloud配置过程之中，所有的配置处理都是围绕着Rest完成，在整个Rest处理之中，一定要有两个端：服务的提供者（Provider）、服务的消费者（Consumer）。</p>
+<p>​    SpringCloud微服务 = ==Rest服务==（需要掌握）</p>
+<p>​    如果想要更好的使用Rest服务，需要考虑以下问题：</p>
+<h3 id="Eureka-注册中心"><a href="#Eureka-注册中心" class="headerlink" title="Eureka 注册中心"></a>Eureka 注册中心</h3><p>​    所有的微服务地址一定会非常的多，所以为了统一管理这些地址信息，也为了可以及时的告诉用户哪些地址不可用，所以应该准备一个==分布式==的注册中心，并且该分布中心应该具备==HA机制==，为了告诉并且方便的进行所有服务的注册操作，SpringCloud里面提供了一个Eureka的注册中心。</p>
+<p>​    对于整个WEB端的架构（SpringBoot实现）可以轻松方便的进行WEB程序的编写，而后利用Nginx或者apache实现负载均衡处理，但是WEB端出现了负载均衡，那么业务端呢？应该也提供多个业务端进行负载均衡，我们需要将参与到负载均衡的业务端在Eureka中进行注册。</p>
+<h3 id="Feign-负载均衡、提供接口"><a href="#Feign-负载均衡、提供接口" class="headerlink" title="Feign 负载均衡、提供接口"></a>Feign 负载均衡、提供接口</h3><p>​    在进行客户端使用Rest架构调用的时候，往往都需要一个调用地址，即使现在使用了Eureka作为注册中心，那么他也需要一个明确的调用地址，可是如果所有的操作都利用调用地址的方式来处理，程序的开发者最方便应用的工具应该是接口，所以希望将所有的Rest服务的内容以接口的方式出现，所以出现了==Feign==。</p>
+<h3 id="Hystrix-熔断处理机制"><a href="#Hystrix-熔断处理机制" class="headerlink" title="Hystrix 熔断处理机制"></a>Hystrix 熔断处理机制</h3><p>在进行整体的微架构设计的时候由于牵扯到的问题还是属于PRC，所以就必须考虑熔断处理机制，实际上所谓的熔断就好比生活中使用的保险丝一样，有了保险丝在一些设备出现了故障之后依然可以保护家庭电器可以正常使用。如果说现在有若干个微服务，并且这些微服务之间允许互相调用，例如：A微服务调用了B微服务，B微服务调用了C微服务。如果在实际的项目设计过程之中没有处理好熔断机制，那么就会产生雪崩效应。所以为了防止这样的问题出现，SpringCloud中提供了Hystrix熔断处理机制，以保证某个微服务出现问题之后依然可以正常使用。一个强壮的系统，每个微服务都应该包含有熔断处理，该方法依然可用，不过返回的内容将会变成一个错误信息。</p>
+<h3 id="Zuul-代理机制"><a href="#Zuul-代理机制" class="headerlink" title="Zuul 代理机制"></a>Zuul 代理机制</h3><p>​    通过Zuul的代理用户只需要知道指定的路由的路径就可以访问指定的微服务的信息，这样就更好的体现了Java中“Key==Value”的设计思想，而且所有的微服务通过Zuul进行代理之后也可以更加合理的进行名称的隐藏。</p>
+<h3 id="Spring-Cloud-Config-项目配置"><a href="#Spring-Cloud-Config-项目配置" class="headerlink" title="Spring Cloud Config 项目配置"></a>Spring Cloud Config 项目配置</h3><p>​    在SpringBoot学习的时候一直强调过一个问题：在SpringBoot里面强调的是一个“零配置”的问题，即不需要配置温和配置文件，但是这一点上并无法完全体现，因为在整体的设计里面，依然会提供application.yml配置文件，那么如果在微服务的创建之中，那么一定会有成百上千个配置文件的出现。如果你的主机要进行机房变更，所有的服务的IP都要发生改变，这样对程序的维护是不方便的。为了解决这样的问题，SpringCloud提供了一个SpringCloudConfig的程序组件，利用整个组件就可以直接基于GIT或SVN来进行配置文件的管理。</p>
+<p>​    <strong><em>在整体设计上，SpringCloud更好的实现了RPC的架构设计，而且使用了Rest作为通讯的基础，这一点是他的成功之处，而且由于大量的使用了netlix公司的产品技术，所以这些技术也有可靠的保障。</em></strong></p>
+<h2 id="SpringCloud的基本架构实现"><a href="#SpringCloud的基本架构实现" class="headerlink" title="SpringCloud的基本架构实现"></a>SpringCloud的基本架构实现</h2>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/08/Thinging%20in%20Java&#39;s%20note/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Thinging in Java's note</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/08/Spring%20Boot%E4%B8%8EWeb%E5%BC%80%E5%8F%91/">
+                        <span class="hidden-mobile">Spring Boot与Web开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"冬眠","artist":"冬眠","url":"/songs/冬眠-司南.mp3","cover":"/songs/covers/冬眠-司南.jpg"},{"name":"无人之岛","artist":"没有发生的爱情","url":"/songs/无人之岛-任然.mp3","cover":"/songs/covers/无人之岛-任然.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <!--
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+      -->
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SpringCloud&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.5.0/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Learning journal">
+  <meta name="author" content="Million Leo">
+  <meta name="keywords" content="Java、Engineer">
+  <title>Web Service - Leo‘s BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/railscasts.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leo'Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.1k 字
+                  </span>
+                
+
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年3月4日 凌晨
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="Web-Service"><a href="#Web-Service" class="headerlink" title="Web Service"></a>Web Service</h1><h2 id="Web-service-基本概念"><a href="#Web-service-基本概念" class="headerlink" title="Web service 基本概念"></a>Web service 基本概念</h2><h3 id="什么是web服务"><a href="#什么是web服务" class="headerlink" title="什么是web服务"></a>什么是web服务</h3><p>这里列举一些常见的web服务：</p>
+<p>手机淘宝、京东</p>
+<p>天气预报</p>
+<p>手机号码归属</p>
+<p>股票查询</p>
+<p>发手机短消息</p>
+<p>手机充值功能</p>
+<p>中英文翻译</p>
+<p>银行转账业务</p>
+<p>公司的“进销存系统”在某商品缺货是自动给供应商下订单</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>（1）webservice即web服务，它是一种跨编程语言呵跨操作系统平台的远程调用技术。</p>
+<p>（2）JAVA中共有三种WebService规范，分别是JAX-WS(JAX-RPC)、JAXM&amp;SAAJ、JAX-RS</p>
+<p>（3）webService三要素：soap、wsdl、uddi</p>
+<h3 id="webservice开发规范"><a href="#webservice开发规范" class="headerlink" title="webservice开发规范"></a>webservice开发规范</h3><p>JAVA中共有三种WebService规范，分别是JAXM&amp;SAAJ、JAX-WS(JAX-RPC)、JAX-RS</p>
+<h4 id="JAX-WS"><a href="#JAX-WS" class="headerlink" title="JAX-WS"></a>JAX-WS</h4><p>JAX-WS    :    JAVA API for XML-WebService</p>
+<p>JDK1.6自带的版本为jax-ws2.1，其底层支持为JAXB、JAX-WS(JSR224)规范的API位于javax.xml.ws.*包，其中大部分都是注解，提供API操作Web服务（通常在客户端使用的较多，由于客户端可以借助SDK生成，因此这个包中的API我们较少会直接使用）</p>
+<h4 id="JAXM-amp-SAAJ"><a href="#JAXM-amp-SAAJ" class="headerlink" title="JAXM&amp;SAAJ"></a>JAXM&amp;SAAJ</h4><p>JAXM    :    JAVA API For XML Message</p>
+<p>主要定义了包含了发送呵接收消息所需要的API，相当于Web服务的服务端，其API位于javax.messaging.*包，它是JAVA EE的可选包，因此需要单独下载。</p>
+<h4 id="JAX-RS"><a href="#JAX-RS" class="headerlink" title="JAX-RS"></a>JAX-RS</h4><p>JAX-RS    ：    是JAVA针对REST（RepresentationState Transfer）风格指定的一套Web服务规范。</p>
+<p>由于推出的较晚，该规范（JSR311,目前JAX-RS的版本为1.0）并未随JDK1.6一起发行。</p>
+<p>需要到CP上单独下载JAX-RS规范的接口，其API位于java.ws.rs.*包</p>
+<h3 id="SOAP协议"><a href="#SOAP协议" class="headerlink" title="SOAP协议"></a>SOAP协议</h3><p>SOAP即简单对象访问协议：Simple Object Access Protocol</p>
+<ul>
+<li><p>它是用于交换XML（标准通用标记语言下的一个子集）编码信息的轻量级协议。它有三个主要方面：XML-envelope为描述信息内容呵如何处理内容定义了框架，将程序对象编码成为XML对象的规则，执行远程过程调用（RPC）的约定，SOAP可以运行在任何其他传输协议上。</p>
+</li>
+<li><p>SOAP作为一个基于XML语言的协议用于网上传输数据。</p>
+</li>
+<li><p>SOAP = 在HTTP的基础上+XML数据</p>
+</li>
+<li><p>SOAP是基于HTTP的。</p>
+</li>
+<li><p>SOAP的组成如下</p>
+<ul>
+<li>Envelope - 必须的部分，以XML的根元素出现</li>
+<li>Headers - 可选的</li>
+<li>Body - 必须的，在body部分，包含要执行的服务器的方法，和发送服务器的数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="WSDL说明书"><a href="#WSDL说明书" class="headerlink" title="WSDL说明书"></a>WSDL说明书</h3><p>Web Service描述语言WSDL（SebService Definition Language）就是用及其能阅读的方式提供的一个正式描述文档而基于XML（标准通用标记语言下的一个子集）的语言，用于描述Web Service及其函数、参数和返回值，因为是基于XML的，所以WSDL即使机器可阅读的，又是人可阅读的。</p>
+<p>wsdl说明书：</p>
+<ul>
+<li>通过wsdl说明书，就可以描述webservice服务端对外发布的服务</li>
+<li>wsdl说明书是一个基于xml文件，通过xml语言描述整个服务</li>
+<li>在wsdl说明中，描述了：<ul>
+<li>对外发布的服务名称（类）</li>
+<li>接口方法名称（方法）</li>
+<li>接口参数（方法参数）</li>
+<li>服务返回的数据类型（方法返回值）</li>
+</ul>
+</li>
+</ul>
+<h3 id="UDDI"><a href="#UDDI" class="headerlink" title="UDDI"></a>UDDI</h3><p>Web服务提供商又如何将自己开发的Web服务公布到因特网上</p>
+<p>这就需要使用倒UDDI了，UDDI的话，是一个跨产业，跨平台的开放性架构，可以帮助Web服务提供商在互联网上发布Web服务的信息。</p>
+<p>UDDI是一种目录服务，企业可以通过UDDI来注册和搜索Web服务。</p>
+<p>简单地说，UDDI就是一个目录，只不过在这个目录中存放的是一些关于Web服务的信息而已。</p>
+<p>并且UDDI通过SOAP进行通讯，构建于.Net之上。</p>
+<p>UDDI 即 Universal Description，Discovery and Integration，也就是通用的描述，发现以及整合。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>WebService可以适用于应用程序集成、软件重用、跨防火墙通信等需求。不同的业务要求不同，具体如下：</p>
+<ul>
+<li>跨防火墙通信</li>
+<li>应用系统集成</li>
+<li>软件和数据重用</li>
+</ul>
+<p>简单来说，如果一个功能，需要被多个系统使用可以使用webservice开发一个服务端接口，共不同的客户端应用。主要应用在企业内部系统之间的接口调用、面向公网的webservice服务。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/08/Thinging%20in%20Java&#39;s%20note/">
+                        <span class="hidden-mobile">Thinging in Java's note</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"冬眠","artist":"冬眠","url":"/songs/冬眠-司南.mp3","cover":"/songs/covers/冬眠-司南.jpg"},{"name":"无人之岛","artist":"没有发生的爱情","url":"/songs/无人之岛-任然.mp3","cover":"/songs/covers/无人之岛-任然.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <!--
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+      -->
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Web Service&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.5.0/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+</body>
+</html>
